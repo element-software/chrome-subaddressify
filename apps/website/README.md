@@ -4,7 +4,7 @@ A modern, dark, responsive marketing website built with Next.js, TypeScript, and
 
 ## Tech Stack
 
-- **Next.js 14** — React framework with App Router
+- **Next.js 15** — React framework with App Router
 - **TypeScript** — strict mode
 - **Tailwind CSS** — utility-first styling
 - **pnpm** — package manager
