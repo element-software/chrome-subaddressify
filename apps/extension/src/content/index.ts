@@ -68,7 +68,10 @@ chrome.runtime.onMessage.addListener(
   ) => {
     if (message.type === 'INSERT_EMAIL') {
       const insertMsg = message as InsertEmailMessage;
-      const email = (insertMsg.payload as { email: string } | undefined)?.email;
+      const payload = insertMsg.payload;
+      const email = typeof payload === 'object' && payload !== null && 'email' in payload
+        ? (payload as { email: string }).email
+        : undefined;
 
       if (!email) {
         sendResponse({ success: false, error: 'No email provided' });
