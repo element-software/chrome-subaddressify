@@ -1,0 +1,28 @@
+{
+  "name": "chrome-subaddressify",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Email Subaddress Generator - Chrome extension and marketing website",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel run dev",
+    "dev:extension": "pnpm --filter @subaddressify/extension run dev",
+    "dev:website": "pnpm --filter @subaddressify/website run dev",
+    "build": "pnpm --filter @subaddressify/shared run build && pnpm --filter @subaddressify/extension run build && pnpm --filter @subaddressify/website run build",
+    "build:shared": "pnpm --filter @subaddressify/shared run build",
+    "build:extension": "pnpm --filter @subaddressify/extension run build",
+    "build:website": "pnpm --filter @subaddressify/website run build",
+    "lint": "pnpm --recursive run lint",
+    "typecheck": "pnpm --recursive run typecheck",
+    "package:extension": "pnpm --filter @subaddressify/extension run package",
+    "zip:extension": "pnpm --filter @subaddressify/extension run zip",
+    "clean": "pnpm --recursive run clean && rm -rf releases/",
+    "test": "pnpm --recursive run test"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
