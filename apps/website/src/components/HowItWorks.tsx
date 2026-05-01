@@ -52,7 +52,7 @@ export function HowItWorks() {
             <div className="flex flex-wrap gap-1 items-center">
               <span className="bg-gray-700 text-gray-200 px-2 py-1 rounded">you</span>
               <span className="text-gray-500">+</span>
-              <span className="bg-blue-900/50 border border-blue-700/50 text-blue-300 px-2 py-1 rounded">20260501</span>
+              <span className="bg-blue-900/50 border border-blue-700/50 text-blue-300 px-2 py-1 rounded">2026-05-01</span>
               <span className="text-gray-500">-</span>
               <span className="bg-purple-900/50 border border-purple-700/50 text-purple-300 px-2 py-1 rounded">example-com</span>
               <span className="text-gray-500">@</span>
@@ -61,7 +61,7 @@ export function HowItWorks() {
           </div>
           <div className="flex flex-wrap gap-4 mt-4 text-xs text-gray-500">
             <span><span className="text-gray-200">you</span> → your local email part</span>
-            <span><span className="text-blue-300">20260501</span> → sign-up date</span>
+            <span><span className="text-blue-300">2026-05-01</span> → sign-up date</span>
             <span><span className="text-purple-300">example-com</span> → website hostname</span>
           </div>
         </div>
