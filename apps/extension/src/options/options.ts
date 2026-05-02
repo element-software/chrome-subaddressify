@@ -1,16 +1,9 @@
 import '../styles/main.css';
 import { validateEmail } from '@subaddressify/shared';
+import { getSettings, saveSettings } from '../storage';
+import type { ExtensionSettings } from '@subaddressify/shared';
 
-async function loadSettings(): Promise<string> {
-  const result = await chrome.storage.sync.get('baseEmail');
-  return (result['baseEmail'] as string | undefined) ?? '';
-}
-
-async function saveSettings(baseEmail: string): Promise<void> {
-  await chrome.storage.sync.set({ baseEmail });
-}
-
-function renderOptions(app: HTMLElement, currentEmail: string): void {
+function renderOptions(app: HTMLElement, current: ExtensionSettings): void {
   app.innerHTML = `
     <div class="max-w-lg mx-auto p-6">
       <div class="flex items-center gap-3 mb-6">
@@ -31,11 +24,46 @@ function renderOptions(app: HTMLElement, currentEmail: string): void {
           id="base-email"
           type="email"
           placeholder="you@example.com"
-          value="${currentEmail}"
+          value="${current.baseEmail}"
           class="w-full bg-gray-700 border border-gray-600 focus:border-blue-500 focus:outline-none rounded-lg px-3 py-2 text-sm text-gray-100 placeholder-gray-500 transition-colors"
           autocomplete="email"
         />
         <p id="email-error" class="text-red-400 text-xs mt-1 hidden">Please enter a valid email address.</p>
+      </div>
+
+      <div class="bg-gray-800 rounded-xl p-5 mb-5">
+        <h2 class="text-sm font-semibold text-gray-200 mb-4">Autofill Behaviour</h2>
+
+        <label class="flex items-start gap-3 cursor-pointer mb-4">
+          <input
+            id="autofill-enabled"
+            type="checkbox"
+            ${current.autoFillEnabled ? 'checked' : ''}
+            class="mt-0.5 w-4 h-4 rounded border-gray-600 bg-gray-700 text-blue-500 focus:ring-blue-500 focus:ring-offset-gray-900 cursor-pointer"
+          />
+          <div>
+            <p class="text-sm font-medium text-gray-200">Auto-fill email fields</p>
+            <p class="text-xs text-gray-400 mt-0.5">
+              Automatically insert your sub-address into signup and email capture forms when you focus the field.
+              Login forms are never auto-filled.
+            </p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 cursor-pointer">
+          <input
+            id="reuse-per-domain"
+            type="checkbox"
+            ${current.reusePerDomain ? 'checked' : ''}
+            class="mt-0.5 w-4 h-4 rounded border-gray-600 bg-gray-700 text-blue-500 focus:ring-blue-500 focus:ring-offset-gray-900 cursor-pointer"
+          />
+          <div>
+            <p class="text-sm font-medium text-gray-200">Remember alias per domain</p>
+            <p class="text-xs text-gray-400 mt-0.5">
+              Reuse the same sub-address on repeat visits to the same site, so your alias stays consistent.
+            </p>
+          </div>
+        </label>
       </div>
 
       <button
@@ -46,7 +74,7 @@ function renderOptions(app: HTMLElement, currentEmail: string): void {
       </button>
 
       <div id="save-success" class="hidden mt-3 bg-green-900/30 border border-green-700 rounded-lg p-3">
-        <p class="text-green-300 text-xs">✅ Settings saved successfully.</p>
+        <p class="text-green-300 text-xs">Settings saved successfully.</p>
       </div>
 
       <div class="bg-gray-800/50 rounded-xl p-5 mt-6">
@@ -59,7 +87,7 @@ function renderOptions(app: HTMLElement, currentEmail: string): void {
           This extension generates addresses like:
         </p>
         <div class="bg-gray-700 rounded-lg px-3 py-2 mb-3">
-          <code class="text-blue-400 text-xs">you+20260501-example-com@yourdomain.com</code>
+          <code class="text-blue-400 text-xs">you+2026-05-01-example-com@yourdomain.com</code>
         </div>
         <p class="text-gray-400 text-xs leading-relaxed">
           This makes it easy to filter, track, and block emails per website — without creating new accounts.
@@ -68,31 +96,37 @@ function renderOptions(app: HTMLElement, currentEmail: string): void {
 
       <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 mt-4">
         <p class="text-gray-500 text-xs">
-          🔒 <strong class="text-gray-400">Privacy note:</strong> Your base email is stored locally using Chrome's sync storage.
-          It is never sent to any server, and the extension does not track your browsing.
+          <strong class="text-gray-400">Privacy note:</strong> Your base email and aliases are stored locally using Chrome's sync storage.
+          Nothing is ever sent to any server, and the extension does not track your browsing.
         </p>
       </div>
     </div>
   `;
 
   const emailInput = document.getElementById('base-email') as HTMLInputElement;
+  const autofillCheckbox = document.getElementById('autofill-enabled') as HTMLInputElement;
+  const reuseCheckbox = document.getElementById('reuse-per-domain') as HTMLInputElement;
   const saveBtn = document.getElementById('save-btn') as HTMLButtonElement;
   const emailError = document.getElementById('email-error');
   const saveSuccess = document.getElementById('save-success');
 
   saveBtn.addEventListener('click', async () => {
-    const email = emailInput.value.trim();
+    const baseEmail = emailInput.value.trim();
     emailError?.classList.add('hidden');
     saveSuccess?.classList.add('hidden');
 
-    if (!validateEmail(email)) {
+    if (!validateEmail(baseEmail)) {
       emailError?.classList.remove('hidden');
       return;
     }
 
     saveBtn.disabled = true;
     try {
-      await saveSettings(email);
+      await saveSettings({
+        baseEmail,
+        autoFillEnabled: autofillCheckbox.checked,
+        reusePerDomain: reuseCheckbox.checked,
+      });
       saveSuccess?.classList.remove('hidden');
     } catch (err) {
       console.error('Failed to save settings:', err);
@@ -105,8 +139,8 @@ function renderOptions(app: HTMLElement, currentEmail: string): void {
 async function init(): Promise<void> {
   const app = document.getElementById('app');
   if (!app) return;
-  const currentEmail = await loadSettings();
-  renderOptions(app, currentEmail);
+  const settings = await getSettings();
+  renderOptions(app, settings);
 }
 
 init().catch(console.error);

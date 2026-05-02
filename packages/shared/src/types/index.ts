@@ -2,7 +2,22 @@
 export interface ExtensionSettings {
   /** The base email address entered by the user, e.g. user@example.com */
   baseEmail: string;
+  /** Whether to automatically fill detected email fields on signup/capture forms */
+  autoFillEnabled: boolean;
+  /** Whether to reuse the same alias for a domain across visits */
+  reusePerDomain: boolean;
 }
+
+/** A stored alias entry for a given domain */
+export interface AliasEntry {
+  /** The full generated sub-address, e.g. user+2026-05-01-example-com@example.com */
+  email: string;
+  /** Unix timestamp (ms) when the alias was first created */
+  createdAt: number;
+}
+
+/** Map of sanitised hostname → alias entry */
+export type AliasMap = Record<string, AliasEntry>;
 
 /** Result of generating a sub-address */
 export interface SubAddressResult {
