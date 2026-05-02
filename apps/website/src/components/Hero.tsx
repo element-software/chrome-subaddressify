@@ -20,7 +20,7 @@ export function Hero() {
 
         <div className="inline-block bg-gray-900 border border-gray-700 rounded-xl px-5 py-3 mb-10">
           <code className="text-blue-400 text-sm sm:text-base font-mono">
-            you+20260501-example-com@yourdomain.com
+            you+2026-05-01-example-com@yourdomain.com
           </code>
         </div>
 

@@ -220,7 +220,7 @@ export function OgTemplate({
                   letterSpacing: '-0.01em',
                 }}
               >
-                you+20260501-example-com@yourdomain.com
+                you+2026-05-01-example-com@yourdomain.com
               </span>
             </div>
           )}

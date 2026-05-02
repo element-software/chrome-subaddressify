@@ -3,7 +3,7 @@ const benefits = [
     icon: '🔍',
     title: 'Know exactly where your email was shared',
     description:
-      'Each sub-address is tied to a specific website and date. If you start receiving spam at user+20260501-shoppingsite-com@domain.com, you know exactly where it came from.',
+      'Each sub-address is tied to a specific website and date. If you start receiving spam at user+2026-05-01-shoppingsite-com@domain.com, you know exactly where it came from.',
   },
   {
     icon: '📁',

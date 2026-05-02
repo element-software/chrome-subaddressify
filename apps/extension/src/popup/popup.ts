@@ -1,3 +1,4 @@
+// @ts-ignore
 import '../styles/main.css';
 import { generateSubAddress, validateEmail } from '@subaddressify/shared';
 import type { ExtensionSettings, InsertEmailMessage, InsertEmailResponse } from '@subaddressify/shared';
