@@ -127,7 +127,10 @@ function renderPopup(
 
       <div class="flex items-center justify-between">
         <p class="text-gray-600 text-xs">Stored locally only.</p>
-        <button id="open-options" class="text-blue-500 hover:text-blue-400 text-xs transition-colors">Settings</button>
+        <div class="flex gap-3">
+          <button id="open-history" class="text-blue-500 hover:text-blue-400 text-xs transition-colors">History</button>
+          <button id="open-options" class="text-blue-500 hover:text-blue-400 text-xs transition-colors">Settings</button>
+        </div>
       </div>
     </div>
   `;
@@ -153,6 +156,10 @@ function renderPopup(
     setTimeout(() => {
       if (insertText) insertText.textContent = 'Insert';
     }, 2000);
+  });
+
+  document.getElementById('open-history')?.addEventListener('click', () => {
+    chrome.tabs.create({ url: chrome.runtime.getURL('options.html') + '#history' });
   });
 
   document.getElementById('open-options')?.addEventListener('click', () => {

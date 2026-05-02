@@ -10,6 +10,7 @@ export function Nav() {
           <a href="#how-it-works" className="text-gray-400 hover:text-gray-200 text-sm transition-colors hidden sm:block">How it works</a>
           <a href="#features" className="text-gray-400 hover:text-gray-200 text-sm transition-colors hidden sm:block">Features</a>
           <a href="#faq" className="text-gray-400 hover:text-gray-200 text-sm transition-colors hidden sm:block">FAQ</a>
+          <a href="/demo" className="text-gray-400 hover:text-gray-200 text-sm transition-colors hidden sm:block">Demo</a>
           <a
             href="https://chrome.google.com/webstore/detail/PLACEHOLDER_EXTENSION_ID"
             target="_blank"

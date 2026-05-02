@@ -36,3 +36,10 @@ export async function getAllAliases(): Promise<AliasMap> {
   const result = await chrome.storage.sync.get('aliases');
   return (result['aliases'] as AliasMap | undefined) ?? {};
 }
+
+export async function deleteAlias(hostname: string): Promise<void> {
+  const result = await chrome.storage.sync.get('aliases');
+  const aliases = (result['aliases'] as AliasMap | undefined) ?? {};
+  delete aliases[hostname];
+  await chrome.storage.sync.set({ aliases });
+}
