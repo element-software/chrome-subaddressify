@@ -20,10 +20,14 @@ async function getCurrentTab(): Promise<TabInfo | null> {
 }
 
 async function getSettings(): Promise<ExtensionSettings | null> {
-  const result = await chrome.storage.sync.get('baseEmail');
+  const result = await chrome.storage.sync.get(['baseEmail', 'autoFillEnabled', 'reusePerDomain']);
   const baseEmail = result['baseEmail'] as string | undefined;
   if (!baseEmail) return null;
-  return { baseEmail };
+
+  const autoFillEnabled = (result['autoFillEnabled'] as boolean | undefined) ?? true;
+  const reusePerDomain = (result['reusePerDomain'] as boolean | undefined) ?? true;
+
+  return { baseEmail, autoFillEnabled, reusePerDomain };
 }
 
 async function copyToClipboard(text: string): Promise<void> {
