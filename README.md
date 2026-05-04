@@ -1,4 +1,4 @@
-# Email Subaddress Generator
+# Subaddressify
 
 A Chrome extension that automatically generates sub-addressed email addresses for any website you visit.
 

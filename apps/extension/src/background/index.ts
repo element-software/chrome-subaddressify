@@ -1,5 +1,5 @@
 /**
- * Background service worker for Email Subaddress Generator.
+ * Background service worker for Subaddressify.
  * Handles extension lifecycle events and keeps logic minimal.
  */
 

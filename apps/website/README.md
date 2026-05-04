@@ -1,4 +1,4 @@
-# Email Subaddress Generator — Marketing Website
+# Subaddressify — Marketing Website
 
 A modern, dark, responsive marketing website built with Next.js, TypeScript, and Tailwind CSS.
 

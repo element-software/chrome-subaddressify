@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Email Subaddress Generator",
+  "name": "Subaddressify - Email Aliases & Leak Detection",
   "version": "1.0.0",
   "description": "Generate unique sub-addressed email variants for every website you visit.",
   "permissions": [
@@ -20,7 +20,7 @@
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     },
-    "default_title": "Email Subaddress Generator"
+    "default_title": "Subaddressify - Email Aliases & Leak Detection"
   },
   "options_page": "options.html",
   "background": {

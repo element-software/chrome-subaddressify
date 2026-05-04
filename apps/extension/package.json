@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Email Subaddress Generator - Chrome Extension",
+  "description": "Subaddressify - Email Aliases & Leak Detection",
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build",

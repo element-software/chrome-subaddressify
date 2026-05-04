@@ -13,7 +13,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-lg font-semibold text-gray-100 mb-2">Overview</h2>
             <p>
-              Email Subaddress Generator is designed with your privacy in mind. The extension does not collect,
+              Subaddressify is designed with your privacy in mind. The extension does not collect,
               transmit, or store any personal data on external servers.
             </p>
           </section>

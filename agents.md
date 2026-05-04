@@ -6,7 +6,7 @@ This document gives AI agents the context needed to work effectively in this rep
 
 ## Project Overview
 
-**Email Subaddress Generator** is a Chrome extension (Manifest V3) paired with a Next.js marketing website. The extension automatically generates unique sub-addressed email variants for any website the user visits.
+**Subaddressify** is a Chrome extension (Manifest V3) paired with a Next.js marketing website. The extension automatically generates unique sub-addressed email variants for any website the user visits.
 
 Sub-address format:
 ```
@@ -137,7 +137,7 @@ pnpm test                 # Run tests across all packages (no tests exist yet)
 
 ### Packaging the extension
 ```bash
-pnpm zip:extension        # Build + create releases/email-subaddress-generator-v<version>.zip
+pnpm zip:extension        # Build + create releases/subaddressify-v<version>.zip
 ```
 
 ---

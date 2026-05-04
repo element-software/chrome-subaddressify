@@ -266,7 +266,7 @@ async function render(app: HTMLElement): Promise<void> {
       <div class="flex items-center gap-3 mb-6">
         <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center text-sm font-bold">@</div>
         <div>
-          <h1 class="text-lg font-semibold text-gray-100">Email Subaddress Generator</h1>
+          <h1 class="text-lg font-semibold text-gray-100">Subaddressify</h1>
           <p class="text-gray-400 text-sm">${activeTab === 'history' ? 'Alias History' : 'Settings'}</p>
         </div>
       </div>

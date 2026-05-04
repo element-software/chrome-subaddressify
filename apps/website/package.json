@@ -2,7 +2,7 @@
   "name": "@subaddressify/website",
   "version": "1.0.0",
   "private": true,
-  "description": "Email Subaddress Generator - Marketing Website",
+  "description": "Subaddressify - Marketing Website",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

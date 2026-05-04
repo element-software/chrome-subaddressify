@@ -3,19 +3,19 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://subaddressify.com'),
-  title: 'Email Subaddress Generator — Chrome Extension',
+  title: 'Subaddressify — Chrome Extension',
   description:
     'Generate unique, traceable email variants per website. No accounts, no subscriptions. Privacy-first email organisation.',
   keywords: ['email subaddress', 'plus addressing', 'chrome extension', 'email privacy', 'email organisation'],
   openGraph: {
-    title: 'Email Subaddress Generator',
+    title: 'Subaddressify',
     description: 'Generate unique email variants for every website. Filter, track, and block with ease.',
     type: 'website',
     siteName: 'Subaddressify',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Email Subaddress Generator — Chrome Extension',
+    title: 'Subaddressify — Chrome Extension',
     description: 'Generate unique email variants for every website. Filter, track, and block with ease.',
   },
 };

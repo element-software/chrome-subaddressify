@@ -2,7 +2,7 @@
   "name": "chrome-subaddressify",
   "version": "1.0.0",
   "private": true,
-  "description": "Email Subaddress Generator - Chrome extension and marketing website",
+  "description": "Subaddressify - Chrome extension and marketing website",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=8.0.0"

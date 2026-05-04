@@ -20,7 +20,7 @@ if (!existsSync(manifestPath)) {
 const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
 const version = manifest.version ?? '1.0.0';
 const releasesDir = resolve(process.cwd(), '../../releases');
-const zipName = `email-subaddress-generator-v${version}.zip`;
+const zipName = `subaddressify-v${version}.zip`;
 const zipPath = join(releasesDir, zipName);
 
 if (!existsSync(releasesDir)) {
