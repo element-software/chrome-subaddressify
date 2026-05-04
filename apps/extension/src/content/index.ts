@@ -133,6 +133,8 @@ chrome.runtime.onMessage.addListener(
       try {
         insertValueIntoInput(target, email);
         autofilledValues.set(target, email);
+        const hostname = sanitiseHostname(window.location.hostname);
+        saveAlias(hostname, { email, createdAt: Date.now() }).catch(() => {});
         sendResponse({ success: true });
       } catch (err) {
         sendResponse({ success: false, error: String(err) });

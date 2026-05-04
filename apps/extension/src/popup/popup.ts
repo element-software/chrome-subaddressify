@@ -1,7 +1,8 @@
 // @ts-ignore
 import '../styles/main.css';
-import { generateSubAddress, validateEmail } from '@subaddressify/shared';
+import { generateSubAddress, validateEmail, sanitiseHostname } from '@subaddressify/shared';
 import type { ExtensionSettings, InsertEmailMessage, InsertEmailResponse } from '@subaddressify/shared';
+import { saveAlias } from '../storage';
 
 interface TabInfo {
   id: number;
@@ -141,6 +142,7 @@ function renderPopup(
 
   copyBtn?.addEventListener('click', async () => {
     await copyToClipboard(subAddress);
+    saveAlias(sanitiseHostname(hostname), { email: subAddress, createdAt: Date.now() }).catch(() => {});
     if (copyText) copyText.textContent = 'Copied!';
     if (copyIcon) copyIcon.textContent = '✅';
     setTimeout(() => {
@@ -152,6 +154,7 @@ function renderPopup(
   document.getElementById('insert-btn')?.addEventListener('click', async () => {
     const insertText = document.getElementById('insert-text');
     await insertEmailIntoTab(tabId, subAddress);
+    saveAlias(sanitiseHostname(hostname), { email: subAddress, createdAt: Date.now() }).catch(() => {});
     if (insertText) insertText.textContent = 'Inserted!';
     setTimeout(() => {
       if (insertText) insertText.textContent = 'Insert';
