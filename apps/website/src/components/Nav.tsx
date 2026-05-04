@@ -12,7 +12,7 @@ export function Nav() {
           <a href="/#faq" className="text-gray-400 hover:text-gray-200 text-sm transition-colors hidden sm:block">FAQ</a>
           <a href="/demo" className="text-gray-400 hover:text-gray-200 text-sm transition-colors hidden sm:block">Demo</a>
           <a
-            href="https://chrome.google.com/webstore/detail/PLACEHOLDER_EXTENSION_ID"
+            href="https://chrome.google.com/webstore/detail/kdmppldldoejpcacjjbjjcffpiodejco"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"

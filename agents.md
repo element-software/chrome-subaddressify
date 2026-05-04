@@ -72,7 +72,7 @@ Release ZIP output: `releases/`
 
 Package name: `@subaddressify/website`
 
-Next.js 15 marketing site using the App Router. Pages: `/` (landing) and `/privacy`. Update the `PLACEHOLDER_EXTENSION_ID` constant in `Hero.tsx`, `Nav.tsx`, and `CTA.tsx` once the extension is published to the Chrome Web Store.
+Next.js 15 marketing site using the App Router. Pages: `/` (landing) and `/privacy`. Update the `kdmppldldoejpcacjjbjjcffpiodejco` constant in `Hero.tsx`, `Nav.tsx`, and `CTA.tsx` once the extension is published to the Chrome Web Store.
 
 ---
 

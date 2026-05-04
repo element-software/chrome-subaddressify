@@ -59,4 +59,4 @@ Update the placeholder URL in these files when the extension is published:
 - `src/components/Nav.tsx`
 - `src/components/CTA.tsx`
 
-Replace `PLACEHOLDER_EXTENSION_ID` with your actual extension ID.
+Replace `kdmppldldoejpcacjjbjjcffpiodejco` with your actual extension ID.

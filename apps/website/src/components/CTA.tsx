@@ -10,7 +10,7 @@ export function CTA() {
             Free, open source, and completely private. Add it to Chrome in seconds.
           </p>
           <a
-            href="https://chrome.google.com/webstore/detail/PLACEHOLDER_EXTENSION_ID"
+            href="https://chrome.google.com/webstore/detail/kdmppldldoejpcacjjbjjcffpiodejco"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3.5 rounded-xl transition-colors"

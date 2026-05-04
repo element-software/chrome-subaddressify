@@ -26,7 +26,7 @@ export function Hero() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
-            href="https://chrome.google.com/webstore/detail/PLACEHOLDER_EXTENSION_ID"
+            href="https://chrome.google.com/webstore/detail/kdmppldldoejpcacjjbjjcffpiodejco"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-xl transition-colors text-sm"
