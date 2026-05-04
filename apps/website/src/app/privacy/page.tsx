@@ -1,5 +1,14 @@
+import type { Metadata } from 'next';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description:
+    'Subaddressify collects no personal data. Your email address is stored locally in your Chrome profile and never transmitted to any server.',
+  alternates: { canonical: '/privacy' },
+  robots: { index: true, follow: false },
+};
 
 export default function PrivacyPage() {
   return (

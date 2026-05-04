@@ -51,6 +51,18 @@ export function PrivacyFirst() {
             <code className="text-blue-400">storage</code>, and{' '}
             <code className="text-blue-400">scripting</code> — the bare minimum needed to generate and insert sub-addresses.
           </div>
+
+          <div className="mt-6 text-center">
+            <a
+              href="/privacy"
+              className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 text-sm transition-colors"
+            >
+              Read our full privacy policy
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>

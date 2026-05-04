@@ -7,9 +7,9 @@ export function Footer() {
           <span>Subaddressify</span>
         </div>
         <nav className="flex items-center gap-5 text-xs text-gray-500">
-          <a href="/#how-it-works" className="hover:text-gray-300 transition-colors">How it works</a>
-          <a href="/#features" className="hover:text-gray-300 transition-colors">Features</a>
-          <a href="/#faq" className="hover:text-gray-300 transition-colors">FAQ</a>
+          <a href="/how-it-works" className="hover:text-gray-300 transition-colors">How it works</a>
+          <a href="/features" className="hover:text-gray-300 transition-colors">Features</a>
+          <a href="/faq" className="hover:text-gray-300 transition-colors">FAQ</a>
           <a href="/demo" className="hover:text-gray-300 transition-colors">Demo</a>
           <a href="/privacy" className="hover:text-gray-300 transition-colors">Privacy Policy</a>
           <a

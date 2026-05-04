@@ -3,20 +3,58 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://subaddressify.com'),
-  title: 'Subaddressify — Chrome Extension',
+  title: {
+    template: '%s | Subaddressify',
+    default: 'Subaddressify — Email Sub-addressing Chrome Extension',
+  },
   description:
-    'Generate unique, traceable email variants per website. No accounts, no subscriptions. Privacy-first email organisation.',
-  keywords: ['email subaddress', 'plus addressing', 'chrome extension', 'email privacy', 'email organisation'],
+    'Generate unique, traceable email addresses for every website you sign up to. Use Gmail, Outlook, or ProtonMail sub-addressing to filter spam, track leaks, and stay organised — no new accounts needed.',
+  keywords: [
+    'email subaddress',
+    'plus addressing',
+    'email sub-addressing',
+    'email alias',
+    'chrome extension',
+    'email privacy',
+    'email organisation',
+    'gmail plus addressing',
+    'spam filter email',
+    'email tracking',
+    'email generator chrome',
+    'email privacy extension',
+    'email leak tracker',
+  ],
+  authors: [{ name: 'Subaddressify' }],
+  creator: 'Subaddressify',
+  publisher: 'Subaddressify',
+  icons: {
+    icon: [{ url: '/icon128.png', sizes: '128x128', type: 'image/png' }],
+    apple: [{ url: '/icon128.png', sizes: '128x128', type: 'image/png' }],
+  },
   openGraph: {
-    title: 'Subaddressify',
-    description: 'Generate unique email variants for every website. Filter, track, and block with ease.',
+    title: 'Subaddressify — Email Sub-addressing Chrome Extension',
+    description:
+      'Generate unique email addresses for every website. Filter spam, track leaks, and stay organised — no new accounts needed.',
     type: 'website',
     siteName: 'Subaddressify',
+    locale: 'en_GB',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Subaddressify — Chrome Extension',
-    description: 'Generate unique email variants for every website. Filter, track, and block with ease.',
+    title: 'Subaddressify — Email Sub-addressing Chrome Extension',
+    description:
+      'Generate unique email addresses for every website. Filter spam, track leaks, and stay organised — no new accounts needed.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 

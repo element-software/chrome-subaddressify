@@ -65,6 +65,18 @@ export function HowItWorks() {
             <span><span className="text-purple-300">example-com</span> → website hostname</span>
           </div>
         </div>
+
+        <div className="mt-10 text-center">
+          <a
+            href="/how-it-works"
+            className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 text-sm transition-colors"
+          >
+            Learn more about how it works
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   );
