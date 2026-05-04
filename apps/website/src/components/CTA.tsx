@@ -1,7 +1,7 @@
 export function CTA() {
   return (
     <section className="py-20 px-4">
-      <div className="max-w-3xl mx-auto text-center">
+      <div className="max-w-7xl mx-auto text-center">
         <div className="bg-gradient-to-br from-blue-950/50 to-gray-950 border border-blue-900/50 rounded-2xl p-10 sm:p-14">
           <h2 className="text-3xl font-bold text-gray-100 mb-4">
             Start using unique email addresses today

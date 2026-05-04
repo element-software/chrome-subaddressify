@@ -255,7 +255,7 @@ export default function DemoPage() {
   return (
     <>
       <Nav />
-      <main className="max-w-4xl mx-auto px-4 pt-28 pb-24">
+      <main className="max-w-7xl mx-auto px-4 pt-28 pb-24">
 
         {/* Header */}
         <div className="mb-12">

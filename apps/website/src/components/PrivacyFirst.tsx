@@ -1,7 +1,7 @@
 export function PrivacyFirst() {
   return (
     <section id="privacy" className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="bg-gradient-to-br from-gray-900 to-gray-950 border border-gray-800 rounded-2xl p-8 sm:p-12">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-green-900/50 border border-green-700/50 rounded-xl flex items-center justify-center text-lg">

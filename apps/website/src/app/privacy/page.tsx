@@ -5,7 +5,7 @@ export default function PrivacyPage() {
   return (
     <>
       <Nav />
-      <main className="max-w-3xl mx-auto px-4 py-24">
+      <main className="max-w-7xl mx-auto px-4 py-24">
         <h1 className="text-3xl font-bold text-gray-100 mb-2">Privacy Policy</h1>
         <p className="text-gray-500 text-sm mb-10">Last updated: May 2026</p>
 

@@ -1,7 +1,7 @@
 export function Footer() {
   return (
     <footer className="border-t border-gray-800 py-8 px-4">
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2 text-gray-400 text-sm">
           <span className="w-5 h-5 bg-blue-600 rounded text-xs font-bold flex items-center justify-center">@</span>
           <span>Subaddressify</span>

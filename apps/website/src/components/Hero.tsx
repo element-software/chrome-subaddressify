@@ -1,7 +1,7 @@
 export function Hero() {
   return (
     <section className="pt-32 pb-20 px-4 text-center">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="inline-flex items-center gap-2 bg-blue-950/50 border border-blue-800/50 rounded-full px-4 py-1.5 text-blue-400 text-xs font-medium mb-8">
           <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></span>
           Free Chrome Extension · No Account Required
