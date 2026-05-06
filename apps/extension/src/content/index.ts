@@ -67,13 +67,13 @@ async function performAutofill(input: HTMLInputElement): Promise<void> {
     } else {
       const result = generateSubAddress(settings.baseEmail, hostname);
       email = result.subAddress;
-      await saveAlias(hostname, { email, createdAt: Date.now() });
+      await saveAlias(hostname, { email, createdAt: Date.now(), originalHostname: hostname });
     }
   } else {
     const result = generateSubAddress(settings.baseEmail, hostname);
     email = result.subAddress;
     // Store even in non-reuse mode so the popup and options page can display it
-    await saveAlias(sanitised, { email, createdAt: Date.now() });
+    await saveAlias(sanitised, { email, createdAt: Date.now(), originalHostname: hostname });
   }
 
   insertValueIntoInput(input, email);
@@ -134,7 +134,7 @@ chrome.runtime.onMessage.addListener(
         insertValueIntoInput(target, email);
         autofilledValues.set(target, email);
         const hostname = sanitiseHostname(window.location.hostname);
-        saveAlias(hostname, { email, createdAt: Date.now() }).catch(() => {});
+        saveAlias(hostname, { email, createdAt: Date.now(), originalHostname: window.location.hostname }).catch(() => {});
         sendResponse({ success: true });
       } catch (err) {
         sendResponse({ success: false, error: String(err) });
