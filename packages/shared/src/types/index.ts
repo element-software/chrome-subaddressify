@@ -14,6 +14,8 @@ export interface AliasEntry {
   email: string;
   /** Unix timestamp (ms) when the alias was first created */
   createdAt: number;
+  /** The original hostname before sanitisation, e.g. google.com */
+  originalHostname?: string;
 }
 
 /** Map of sanitised hostname → alias entry */

@@ -142,7 +142,7 @@ function renderPopup(
 
   copyBtn?.addEventListener('click', async () => {
     await copyToClipboard(subAddress);
-    saveAlias(sanitiseHostname(hostname), { email: subAddress, createdAt: Date.now() }).catch(() => {});
+    saveAlias(sanitiseHostname(hostname), { email: subAddress, createdAt: Date.now(), originalHostname: hostname }).catch(() => {});
     if (copyText) copyText.textContent = 'Copied!';
     if (copyIcon) copyIcon.textContent = '✅';
     setTimeout(() => {
@@ -154,7 +154,7 @@ function renderPopup(
   document.getElementById('insert-btn')?.addEventListener('click', async () => {
     const insertText = document.getElementById('insert-text');
     await insertEmailIntoTab(tabId, subAddress);
-    saveAlias(sanitiseHostname(hostname), { email: subAddress, createdAt: Date.now() }).catch(() => {});
+    saveAlias(sanitiseHostname(hostname), { email: subAddress, createdAt: Date.now(), originalHostname: hostname }).catch(() => {});
     if (insertText) insertText.textContent = 'Inserted!';
     setTimeout(() => {
       if (insertText) insertText.textContent = 'Insert';

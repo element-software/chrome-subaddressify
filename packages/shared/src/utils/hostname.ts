@@ -44,3 +44,45 @@ export function sanitiseHostname(hostname: string): string {
   // Trim leading/trailing hyphens
   return collapsed.replace(/^-+/, '').replace(/-+$/, '');
 }
+
+const COMPOUND_TLDS = new Set([
+  'co-uk', 'co-au', 'co-nz', 'co-in', 'co-jp', 'co-za', 'com-au', 'com-br',
+]);
+
+const KNOWN_TLDS = new Set([
+  'com', 'org', 'net', 'io', 'co', 'uk', 'de', 'fr', 'au', 'gov', 'edu',
+  'me', 'dev', 'app', 'ai', 'info', 'biz', 'us', 'ca', 'jp', 'cn', 'nl',
+  'es', 'it', 'ru', 'br', 'in', 'nz', 'se', 'no', 'dk', 'fi', 'pl', 'cz',
+  'ro', 'hu', 'pt', 'be', 'ch', 'at', 'mx', 'ar', 'cl', 'pe', 'eg', 'za',
+  'ng', 'ke', 'ie', 'sg', 'hk', 'tw', 'kr', 'eu',
+]);
+
+/**
+ * Best-effort restoration of a sanitised hostname back to a browsable domain.
+ * Detects common TLD patterns and replaces the last hyphen separator(s) with dots.
+ *
+ * Example: 'google-com' => 'google.com', 'amazon-co-uk' => 'amazon.co.uk'
+ *
+ * When the original hostname is available (stored as `AliasEntry.originalHostname`),
+ * prefer that over this function.
+ */
+export function restoreHostname(sanitised: string): string {
+  const parts = sanitised.split('-');
+  if (parts.length < 2) return sanitised;
+
+  if (parts.length >= 3) {
+    const lastTwo = parts[parts.length - 2] + '-' + parts[parts.length - 1];
+    if (COMPOUND_TLDS.has(lastTwo)) {
+      const domain = parts.slice(0, -2).join('-');
+      const tld = parts.slice(-2).join('.');
+      return domain + '.' + tld;
+    }
+  }
+
+  const lastPart = parts[parts.length - 1];
+  if (KNOWN_TLDS.has(lastPart)) {
+    return parts.slice(0, -1).join('-') + '.' + lastPart;
+  }
+
+  return sanitised;
+}

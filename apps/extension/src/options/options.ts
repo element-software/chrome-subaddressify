@@ -1,5 +1,5 @@
 import '../styles/main.css';
-import { validateEmail, formatDateDisplay } from '@subaddressify/shared';
+import { validateEmail, formatDateDisplay, restoreHostname } from '@subaddressify/shared';
 import { getSettings, saveSettings, getAllAliases, deleteAlias } from '../storage';
 import type { ExtensionSettings, AliasMap } from '@subaddressify/shared';
 
@@ -130,12 +130,14 @@ function renderAliasRows(aliases: AliasMap, query: string): string {
 
   return entries.map(([hostname, entry]) => {
     const date = formatDateDisplay(new Date(entry.createdAt));
+    const displayDomain = entry.originalHostname ?? restoreHostname(hostname);
     const escapedEmail = entry.email.replace(/"/g, '&quot;');
     const escapedHostname = hostname.replace(/"/g, '&quot;');
+    const escapedDomain = displayDomain.replace(/"/g, '&quot;');
     return `
       <div class="bg-gray-800 rounded-lg p-3 flex items-start gap-3 group" data-hostname="${escapedHostname}">
         <div class="flex-1 min-w-0">
-          <p class="text-gray-200 text-xs font-medium truncate">${hostname}</p>
+          <p class="text-gray-200 text-xs font-medium truncate" title="${escapedDomain}">${displayDomain}</p>
           <p class="text-blue-400 text-xs font-mono break-all mt-0.5">${entry.email}</p>
           <p class="text-gray-500 text-xs mt-1">${date}</p>
         </div>
@@ -146,7 +148,7 @@ function renderAliasRows(aliases: AliasMap, query: string): string {
             title="Copy alias"
           >Copy</button>
           <a
-            href="https://${hostname}"
+            href="https://${escapedDomain}"
             target="_blank"
             rel="noopener noreferrer"
             class="text-gray-400 hover:text-gray-200 text-xs px-2 py-1 rounded bg-gray-700 hover:bg-gray-600 transition-colors"
