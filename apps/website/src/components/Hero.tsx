@@ -1,3 +1,7 @@
+'use client';
+
+import posthog from 'posthog-js';
+
 export function Hero() {
   return (
     <section className="pt-32 pb-20 px-4 text-center">
@@ -30,6 +34,7 @@ export function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-xl transition-colors text-sm"
+            onClick={() => posthog.capture('add_to_chrome_clicked', { location: 'hero' })}
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>

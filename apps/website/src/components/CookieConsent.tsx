@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import posthog from 'posthog-js';
 
 type ConsentState = 'granted' | 'denied' | null;
 
@@ -51,6 +52,8 @@ export default function CookieConsent() {
     setConsent('granted');
     setVisible(false);
     updateGoogleConsent('granted');
+    posthog.opt_in_capturing();
+    posthog.capture('cookie_consent_accepted');
   }
 
   function handleDecline() {
@@ -58,6 +61,7 @@ export default function CookieConsent() {
     setConsent('denied');
     setVisible(false);
     updateGoogleConsent('denied');
+    posthog.opt_out_capturing();
   }
 
   if (!visible) return null;

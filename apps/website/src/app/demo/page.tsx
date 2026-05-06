@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
+import posthog from 'posthog-js';
 
 type FormState = 'idle' | 'submitted';
 
@@ -14,6 +15,7 @@ function NewsletterForm() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
+    posthog.capture('newsletter_subscribed', { form: 'acme_newsletter' });
     setSubmittedEmail(email);
     setState('submitted');
   }
@@ -76,6 +78,7 @@ function SignupForm() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email || !name) return;
+    posthog.capture('demo_signup_submitted', { form: 'nexus_cloud' });
     setSubmittedEmail(email);
     setState('submitted');
   }

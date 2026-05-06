@@ -1,3 +1,7 @@
+'use client';
+
+import posthog from 'posthog-js';
+
 export function CTA() {
   return (
     <section className="py-20 px-4">
@@ -14,6 +18,7 @@ export function CTA() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3.5 rounded-xl transition-colors"
+            onClick={() => posthog.capture('add_to_chrome_clicked', { location: 'cta' })}
           >
             Add to Chrome — It&#39;s Free
           </a>

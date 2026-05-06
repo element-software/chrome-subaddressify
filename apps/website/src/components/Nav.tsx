@@ -1,3 +1,7 @@
+'use client';
+
+import posthog from 'posthog-js';
+
 export function Nav() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-950/80 backdrop-blur-sm border-b border-gray-800/50">
@@ -16,6 +20,7 @@ export function Nav() {
             target="_blank"
             rel="noopener noreferrer"
             className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+            onClick={() => posthog.capture('add_to_chrome_clicked', { location: 'nav' })}
           >
             Add to Chrome
           </a>
