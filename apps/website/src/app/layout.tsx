@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import CookieConsent from '@/components/CookieConsent';
+import AnalyticsScripts from '@/components/AnalyticsScripts';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -68,8 +70,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        <AnalyticsScripts />
       </head>
-      <body className="bg-gray-950 text-gray-100 antialiased">{children}</body>
+      <body className="bg-gray-950 text-gray-100 antialiased">
+        {children}
+        <CookieConsent />
+      </body>
     </html>
   );
 }
