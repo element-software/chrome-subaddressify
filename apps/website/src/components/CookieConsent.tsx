@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { inject } from '@vercel/analytics';
 
 type ConsentState = 'granted' | 'denied' | null;
 
@@ -33,7 +32,6 @@ export default function CookieConsent() {
     if (stored === 'granted' || stored === 'denied') {
       setConsent(stored);
       updateGoogleConsent(stored);
-      if (stored === 'granted') inject({ mode: 'auto' });
     } else {
       setVisible(true);
     }
@@ -53,7 +51,6 @@ export default function CookieConsent() {
     setConsent('granted');
     setVisible(false);
     updateGoogleConsent('granted');
-    inject({ mode: 'auto' });
   }
 
   function handleDecline() {
