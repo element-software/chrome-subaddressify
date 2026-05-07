@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Subaddressify - Email Aliases & Leak Detection",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Generate unique sub-addressed email variants for every website you visit.",
   "permissions": [
     "activeTab",
@@ -29,8 +29,13 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
-      "js": ["content.js"],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_idle"
     }
   ],
@@ -42,8 +47,13 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["assets/*"],
-      "matches": ["http://*/*", "https://*/*"]
+      "resources": [
+        "assets/*"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ]
     }
   ]
 }
