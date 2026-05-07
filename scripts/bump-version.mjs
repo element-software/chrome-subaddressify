@@ -1,12 +1,10 @@
 /**
- * Bumps the extension version in manifest.json and package.json, commits, and tags.
+ * Bumps the extension version in manifest.json and package.json, commits, tags, and pushes.
+ * Pushing the tag triggers the GitHub Actions publish workflow.
  *
  * Usage:
  *   node scripts/bump-version.mjs <version>
  *   node scripts/bump-version.mjs 1.2.0
- *
- * Then push with:
- *   git push --follow-tags
  */
 
 import { readFileSync, writeFileSync } from 'fs';
@@ -41,5 +39,6 @@ console.log(`Bumped ${prev} → ${version}`);
 execSync(`git add "${manifestPath}" "${packagePath}"`, { stdio: 'inherit' });
 execSync(`git commit -m "chore: bump extension to v${version}"`, { stdio: 'inherit' });
 execSync(`git tag v${version}`, { stdio: 'inherit' });
+execSync(`git push --follow-tags`, { stdio: 'inherit' });
 
-console.log(`\nTagged v${version}. Push with:\n  git push --follow-tags`);
+console.log(`\nReleased v${version} — publish workflow triggered.`);
