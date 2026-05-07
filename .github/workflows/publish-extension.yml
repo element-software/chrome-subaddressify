@@ -1,0 +1,66 @@
+# Publishes the Chrome extension to the Web Store on every v* tag push.
+#
+# Required GitHub secrets (Settings → Secrets → Actions):
+#   CHROME_EXTENSION_ID   — the extension ID from the Chrome Web Store URL
+#   CHROME_CLIENT_ID      — OAuth2 client ID from Google Cloud Console
+#   CHROME_CLIENT_SECRET  — OAuth2 client secret
+#   CHROME_REFRESH_TOKEN  — OAuth2 refresh token (see docs/publishing.md)
+#
+# Developer workflow:
+#   node scripts/bump-version.mjs 1.2.0
+#   git push --follow-tags
+
+name: Publish Extension
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    name: Build & publish to Chrome Web Store
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify tag matches manifest version
+        run: |
+          TAG="${{ github.ref_name }}"          # e.g. v1.2.0
+          MANIFEST_VERSION=$(node -p "require('./apps/extension/manifest.json').version")
+          EXPECTED="v${MANIFEST_VERSION}"
+          if [ "$TAG" != "$EXPECTED" ]; then
+            echo "❌ Tag '$TAG' does not match manifest version '$EXPECTED'"
+            exit 1
+          fi
+          echo "✅ Version check passed: $TAG"
+
+      - name: Build extension
+        run: pnpm build:extension
+
+      - name: Zip extension
+        run: pnpm zip:extension
+
+      - name: Publish to Chrome Web Store
+        run: |
+          ZIP="releases/subaddressify-${{ github.ref_name }}.zip"
+          npx chrome-webstore-upload-cli@3 upload \
+            --source "$ZIP" \
+            --extension-id "${{ secrets.CHROME_EXTENSION_ID }}" \
+            --client-id "${{ secrets.CHROME_CLIENT_ID }}" \
+            --client-secret "${{ secrets.CHROME_CLIENT_SECRET }}" \
+            --refresh-token "${{ secrets.CHROME_REFRESH_TOKEN }}" \
+            --auto-publish
