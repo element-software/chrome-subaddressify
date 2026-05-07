@@ -40,7 +40,10 @@ function renderNoEmail(app: HTMLElement): void {
     <div class="p-4">
       <div class="flex items-center gap-2 mb-3">
         <div class="w-6 h-6 bg-blue-500 rounded flex items-center justify-center text-xs font-bold">@</div>
-        <h1 class="text-sm font-semibold text-gray-100">Subaddressify</h1>
+        <div>
+          <h1 class="text-sm font-semibold text-gray-100">Subaddressify</h1>
+          <p class="text-gray-500 text-xs">v${chrome.runtime.getManifest().version}</p>
+        </div>
       </div>
       <div class="bg-yellow-900/30 border border-yellow-700 rounded-lg p-3 mb-3">
         <p class="text-yellow-300 text-xs font-medium mb-1">⚠️ No base email configured</p>
@@ -62,7 +65,10 @@ function renderError(app: HTMLElement, message: string): void {
     <div class="p-4">
       <div class="flex items-center gap-2 mb-3">
         <div class="w-6 h-6 bg-blue-500 rounded flex items-center justify-center text-xs font-bold">@</div>
-        <h1 class="text-sm font-semibold text-gray-100">Subaddressify</h1>
+        <div>
+          <h1 class="text-sm font-semibold text-gray-100">Subaddressify</h1>
+          <p class="text-gray-500 text-xs">v${chrome.runtime.getManifest().version}</p>
+        </div>
       </div>
       <div class="bg-red-900/30 border border-red-700 rounded-lg p-3">
         <p class="text-red-300 text-xs">${message}</p>
@@ -105,7 +111,10 @@ function renderPopup(
     <div class="p-4">
       <div class="flex items-center gap-2 mb-3">
         <div class="w-6 h-6 bg-blue-500 rounded flex items-center justify-center text-xs font-bold flex-shrink-0">@</div>
-        <h1 class="text-sm font-semibold text-gray-100">Subaddressify</h1>
+        <div>
+          <h1 class="text-sm font-semibold text-gray-100">Subaddressify</h1>
+          <p class="text-gray-500 text-xs">v${chrome.runtime.getManifest().version}</p>
+        </div>
       </div>
 
       <div class="bg-gray-800 rounded-lg p-3 mb-3">

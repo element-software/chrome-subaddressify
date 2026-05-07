@@ -271,6 +271,7 @@ async function render(app: HTMLElement): Promise<void> {
           <h1 class="text-lg font-semibold text-gray-100">Subaddressify</h1>
           <p class="text-gray-400 text-sm">${activeTab === 'history' ? 'Alias History' : 'Settings'}</p>
         </div>
+        <span class="ml-auto text-gray-600 text-xs">v${chrome.runtime.getManifest().version}</span>
       </div>
       ${renderTabNav(activeTab)}
       ${activeTab === 'settings' ? renderSettingsContent(settings) : renderHistoryContent(aliases)}
