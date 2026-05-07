@@ -21,6 +21,8 @@ jobs:
   publish:
     name: Build & publish to Chrome Web Store
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -57,13 +59,40 @@ jobs:
       - name: Publish to Chrome Web Store
         run: |
           ZIP="releases/subaddressify-${{ github.ref_name }}.zip"
-          npx chrome-webstore-upload-cli@3 upload \
-            --source "$ZIP" \
-            --extension-id "${{ secrets.CHROME_EXTENSION_ID }}" \
-            --client-id "${{ secrets.CHROME_CLIENT_ID }}" \
-            --client-secret "${{ secrets.CHROME_CLIENT_SECRET }}" \
-            --refresh-token "${{ secrets.CHROME_REFRESH_TOKEN }}" \
-            --auto-publish
+          TIMEOUT=3600
+          INTERVAL=300
+          START=$(date +%s)
+
+          while true; do
+            OUTPUT=$(npx chrome-webstore-upload-cli@3 upload \
+              --source "$ZIP" \
+              --extension-id "${{ secrets.CHROME_EXTENSION_ID }}" \
+              --client-id "${{ secrets.CHROME_CLIENT_ID }}" \
+              --client-secret "${{ secrets.CHROME_CLIENT_SECRET }}" \
+              --refresh-token "${{ secrets.CHROME_REFRESH_TOKEN }}" \
+              --auto-publish 2>&1) && EXIT_CODE=0 || EXIT_CODE=$?
+
+            echo "$OUTPUT"
+
+            if [ $EXIT_CODE -eq 0 ]; then
+              echo "Upload successful"
+              break
+            fi
+
+            if echo "$OUTPUT" | grep -q "ITEM_NOT_UPDATABLE"; then
+              ELAPSED=$(( $(date +%s) - START ))
+              if [ $ELAPSED -ge $TIMEOUT ]; then
+                echo "Timed out after 60 minutes waiting for item to become updatable"
+                exit 1
+              fi
+              WAIT=$(( INTERVAL < (TIMEOUT - ELAPSED) ? INTERVAL : (TIMEOUT - ELAPSED) ))
+              echo "Item not updatable (pending review or ready to publish). Retrying in ${WAIT}s... (${ELAPSED}s elapsed of ${TIMEOUT}s timeout)"
+              sleep $WAIT
+            else
+              echo "Upload failed with unexpected error"
+              exit 1
+            fi
+          done
 
       - name: Create GitHub Release
         env:
