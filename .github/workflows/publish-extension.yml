@@ -99,6 +99,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           ZIP="releases/subaddressify-${{ github.ref_name }}.zip"
+          PREV_TAG=$(git tag --sort=-version:refname | grep -v "^${{ github.ref_name }}$" | head -1)
+          if [ -n "$PREV_TAG" ]; then
+            NOTES=$(git log "${PREV_TAG}..${{ github.ref_name }}" --pretty=format:"- %s" --no-merges)
+            NOTES="## Changes since ${PREV_TAG}"$'\n\n'"${NOTES}"
+          else
+            NOTES=$(git log "${{ github.ref_name }}" --pretty=format:"- %s" --no-merges)
+            NOTES="## Changes"$'\n\n'"${NOTES}"
+          fi
           gh release create "${{ github.ref_name }}" "$ZIP" \
             --title "${{ github.ref_name }}" \
-            --generate-notes
+            --notes "${NOTES}"
