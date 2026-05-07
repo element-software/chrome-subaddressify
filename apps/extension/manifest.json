@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Subaddressify - Email Aliases & Leak Detection",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Generate unique sub-addressed email variants for every website you visit.",
   "permissions": [
     "activeTab",
