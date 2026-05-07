@@ -38,7 +38,7 @@ console.log(`Bumped ${prev} → ${version}`);
 // Commit and tag
 execSync(`git add "${manifestPath}" "${packagePath}"`, { stdio: 'inherit' });
 execSync(`git commit -m "chore: bump extension to v${version}"`, { stdio: 'inherit' });
-execSync(`git tag v${version}`, { stdio: 'inherit' });
+execSync(`git tag -a v${version} -m "Release v${version}"`, { stdio: 'inherit' });
 execSync(`git push --follow-tags`, { stdio: 'inherit' });
 
 console.log(`\nReleased v${version} — publish workflow triggered.`);
