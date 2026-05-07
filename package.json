@@ -22,7 +22,8 @@
     "clean": "pnpm --recursive run clean && rm -rf releases/",
     "test": "pnpm --recursive run test",
     "release": "node scripts/bump-version.mjs",
-    "screenshots:store": "pnpm build:shared && pnpm build:extension && pnpm build:website && node scripts/capture-store-screenshots.mjs"
+    "screenshots:store": "pnpm build:shared && pnpm build:extension && pnpm build:website && node scripts/capture-store-screenshots.mjs",
+    "screenshots:promo": "node scripts/capture-promo-tiles.mjs"
   },
   "devDependencies": {
     "playwright": "^1.59.1",
