@@ -21,9 +21,13 @@
     "zip:extension": "pnpm --filter @subaddressify/extension run zip",
     "clean": "pnpm --recursive run clean && rm -rf releases/",
     "test": "pnpm --recursive run test",
-    "release": "node scripts/bump-version.mjs"
+    "release": "node scripts/bump-version.mjs",
+    "screenshots:store": "pnpm build:shared && pnpm build:extension && pnpm build:website && node scripts/capture-store-screenshots.mjs"
   },
   "devDependencies": {
+    "playwright": "^1.59.1",
+    "serve": "^14.2.6",
+    "sharp": "^0.34.5",
     "typescript": "^5.4.5"
   }
 }
