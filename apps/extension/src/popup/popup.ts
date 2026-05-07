@@ -81,8 +81,17 @@ async function insertEmailIntoTab(tabId: number, email: string): Promise<void> {
     if (!response?.success) {
       console.warn('Insert failed:', response?.error);
     }
-  } catch (err) {
-    console.warn('Could not send message to content script:', err);
+  } catch {
+    // Content script not running (e.g. tab was open before extension installed) — inject then retry
+    try {
+      await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] });
+      const response = await chrome.tabs.sendMessage<InsertEmailMessage, InsertEmailResponse>(tabId, message);
+      if (!response?.success) {
+        console.warn('Insert failed after inject:', response?.error);
+      }
+    } catch (err) {
+      console.warn('Could not inject content script:', err);
+    }
   }
 }
 
