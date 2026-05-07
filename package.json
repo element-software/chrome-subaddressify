@@ -20,7 +20,8 @@
     "package:extension": "pnpm --filter @subaddressify/extension run package",
     "zip:extension": "pnpm --filter @subaddressify/extension run zip",
     "clean": "pnpm --recursive run clean && rm -rf releases/",
-    "test": "pnpm --recursive run test"
+    "test": "pnpm --recursive run test",
+    "release": "node scripts/bump-version.mjs"
   },
   "devDependencies": {
     "typescript": "^5.4.5"
