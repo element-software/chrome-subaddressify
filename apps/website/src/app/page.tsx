@@ -5,6 +5,7 @@ import { WhySubAddressing } from '@/components/WhySubAddressing';
 import { PrivacyFirst } from '@/components/PrivacyFirst';
 import { Features } from '@/components/Features';
 import { FAQ } from '@/components/FAQ';
+import { OpenSourceInvite } from '@/components/OpenSourceInvite';
 import { CTA } from '@/components/CTA';
 import { Footer } from '@/components/Footer';
 import { Nav } from '@/components/Nav';
@@ -72,6 +73,7 @@ export default function Home() {
         <PrivacyFirst />
         <Features />
         <FAQ />
+        <OpenSourceInvite />
         <CTA />
       </main>
       <Footer />
